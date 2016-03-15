@@ -7,4 +7,14 @@ module DOW
   def today
     Date.today.strftime('%A')
   end
+
+  def date month = now.month, day = now.day, year = now.year
+    Date.new(year, month, day).strftime('%A')
+  end
+
+  private
+
+  def now
+    @date ||= Date.today
+  end
 end

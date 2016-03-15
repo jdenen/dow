@@ -5,7 +5,7 @@ module DOW
   extend self
 
   def today
-    Date.today.strftime('%A')
+    date
   end
 
   def date month = now.month, day = now.day, year = now.year

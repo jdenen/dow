@@ -7,7 +7,7 @@ describe DOW do
 
   describe ".today" do
     it "returns today's day of the week string" do
-      expect(Date).to receive(:today).and_return(Date.new 2010, 1, 1)
+      allow(Date).to receive(:today).and_return(Date.new 2010, 1, 1)
       expect(subject.today).to eq "Friday"
     end
   end
@@ -15,7 +15,7 @@ describe DOW do
   describe ".date" do
     context "without arguments" do
       it "returns today's day of the week string" do
-        expect(Date).to receive(:today).and_return(Date.new 2010, 1, 1)
+        allow(Date).to receive(:today).and_return(Date.new 2010, 1, 1)
         expect(subject.date).to eq "Friday"
       end
     end

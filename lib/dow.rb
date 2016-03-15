@@ -8,7 +8,7 @@ module DOW
     date
   end
 
-  def date month = now.month, day = now.day, year = now.year
+  def date month: now.month, day: now.day, year: now.year
     Date.new(year, month, day).strftime('%A')
   end
 

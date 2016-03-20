@@ -5,7 +5,8 @@ module DOW
     extend self
 
     def date month: today.month, day: today.day, year: today.year
-      Date.new(year, month, day).strftime('%A')
+      ymd = [year, month, day].map(&:to_i)
+      Date.new(*ymd).strftime('%A')
     end
 
     private

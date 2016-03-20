@@ -35,5 +35,11 @@ describe DOW::Converter do
         expect(subject.date day: 5).to eq "Tuesday"
       end
     end
+
+    context "with string arguments" do
+      it "returns the day of the week" do
+        expect(subject.date month: '12', day: '20', year: '2010').to eq "Monday"
+      end
+    end
   end
 end

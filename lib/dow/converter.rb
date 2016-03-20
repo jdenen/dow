@@ -4,17 +4,13 @@ module DOW
   module Converter
     extend self
 
-    def today
-      date
-    end
-
-    def date month: now.month, day: now.day, year: now.year
+    def date month: today.month, day: today.day, year: today.year
       Date.new(year, month, day).strftime('%A')
     end
 
     private
 
-    def now
+    def today
       @date ||= Date.today
     end
   end

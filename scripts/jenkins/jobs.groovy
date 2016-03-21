@@ -121,7 +121,7 @@ rubies.each { ruby ->
         shell("mkdir -p dow-${ruby}-${pf}/lib/ruby")
         shell("tar -xzf traveling-ruby-20150715-${ruby}-${pf}.tar.gz -C dow-${ruby}-${pf}/lib/ruby")
         shell("mv lib/* dow-${ruby}-${pf}/lib")
-        shell("cp scripts/wrapper.sh dow-${ruby}-${pf}/dow")
+        shell("cp wrapper.sh dow-${ruby}-${pf}/dow")
         shell("tar -czf dow-${ruby}-${pf}.tar.gz dow-${ruby}-${pf}")
       }
       

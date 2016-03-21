@@ -59,7 +59,7 @@ rubies.each { ruby ->
     }
 
     triggers {
-      upstream("ruby-${ruby}-osx-build", "SUCCESSS")
+      upstream("ruby-${ruby}-osx-build", "SUCCESS")
     }
 
     wrappers {

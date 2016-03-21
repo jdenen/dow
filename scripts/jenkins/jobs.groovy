@@ -58,6 +58,17 @@ rubies.each { ruby ->
       }
     }
 
+    triggers {
+      upstream("ruby-${ruby}-osx-build", "SUCCESSS")
+    }
+
+    wrappers {
+      rbenv("${ruby}") {
+	ignoreLocalVersion()
+	gems("bundler", "rake")
+      }
+    }
+
     steps {
       copyArtifacts("ruby-${ruby}-osx-build") {
 	includePatterns("*.gz")

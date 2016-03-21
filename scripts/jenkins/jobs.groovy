@@ -34,7 +34,13 @@ rubies.each { ruby ->
 
     publishers {
       archiveJunit("result/*.xml")
-      mailer('', true, true)
+      slackNotifications {
+	projectChannel("#general")
+	teamDomain("johnson-ci")
+	notifyFailure()
+	notifyRepeatedFailure()
+	notifyBackToNormal()
+      }
     }
     
     platforms.each { pf ->
@@ -82,10 +88,16 @@ rubies.each { ruby ->
       shell("bundle check || bundle install")
       shell("TEST_ARTIFACT=1 bundle exec rspec -f RspecJunitFormatter -o result/dow-${ruby}-osx-smoke-test.xml -f progress")
     }
-
+    
     publishers {
       archiveJunit("result/*.xml")
-      mailer('', true, true)
+      slackNotifications {
+	projectChannel("#general")
+	teamDomain("johnson-ci")
+	notifyFailure()
+	notifyRepeatedFailure()
+	notifyBackToNormal()
+      }
     }
   }
 
@@ -118,7 +130,14 @@ rubies.each { ruby ->
           pattern("dow-${ruby}-${pf}.tar.gz")
           onlyIfSuccessful
 	}
-        mailer('', true, true)
+	slackNotifications {
+	  projectChannel("#general")
+	  teamDomain("johnson-ci")
+	  notifyFailure()
+	  notifyRepeatedFailure()
+	  notifyBackToNormal()
+	}
+	
       }
     }
   }

@@ -44,6 +44,40 @@ rubies.each { ruby ->
     }  
   }
 
+  job("ruby-${ruby}-osx-smoke-test") {
+    description("Smoke test the build artifact on OSX")
+
+    scm {
+      git {
+	remote {
+	  github("jdenen/dow")
+	}
+	extensions {
+	  cleanBeforeCheckout()
+	}
+      }
+    }
+
+    steps {
+      copyArtifacts("ruby-${ruby}-osx-build") {
+	includePatterns("*.gz")
+	buildSelector {
+	  latestSuccessful(true)
+	}
+      }
+      shell("mkdir spec/support")
+      shell("tar -xzf dow-${ruby}-osx.tar.gz")
+      shell("mv dow-${ruby}-osx/* spec/support")
+      shell("bundle check || bundle install")
+      shell("TEST_ARTIFACT=1 bundle exec rspec -f RspecJunitFormatter -o result/dow-${ruby}-osx-smoke-test.xml -f progress")
+    }
+
+    publishers {
+      archiveJunit("result/*.xml")
+      mailer('', true, true)
+    }
+  }
+
   platforms.each { pf ->
     job("ruby-${ruby}-${pf}-build") {
       description("Build for Ruby ${ruby} on ${pf}")

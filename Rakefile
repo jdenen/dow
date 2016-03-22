@@ -1,5 +1,18 @@
 require "rspec/core/rake_task"
 
+namespace :spec do
+  desc "Execute unit tests"
+  RSpec::Core::RakeTask.new(:unit) do |task|
+    task.rspec_opts = "-f RspecJunitFormatter -o result/unit-test.xml -f progress"
+  end
+
+  desc "Execute smoke tests"
+  RSpec::Core::RakeTask.new(:smoke) do |task| 
+    ENV['TEST_ARTIFACT'] = '1'
+    task.rspec_opts = "-f RspecJunitFormatter -o result/smoke-test.xml -f progress"
+  end
+end
+
 namespace :package do
   ["osx", "linux-x86", "linux-x86_64"].each do |pf|
     desc "Package app for #{pf}"

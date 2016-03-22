@@ -1,39 +1,41 @@
 # DOW
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/dow`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+DOW is a simple command line application to determine the day of the week ("Wednesday") for a given date.
 
 ## Installation
 
-Add this line to your application's Gemfile:
+Download and unpack one of the following OSX tarballs.
 
-```ruby
-gem 'dow'
-```
+[Ruby 2.2.2](https://s3.amazonaws.com/dow-release/ruby-2.2.2/dow-2.2.2-osx.tar.gz)
 
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install dow
+[Ruby 2.1.6](https://s3.amazonaws.com/dow-release/ruby-2.1.6/dow-2.1.6-osx.tar.gz)
 
 ## Usage
 
-TODO: Write usage instructions here
+On your command line, call the dow application without arguments to get today's day of the week.
+
+	$ ./dow-2.2.2-osx/dow
+
+You can call the application with `--day`, `--month`, or `--year` arguments to specify another date. Arguments not given will assume today's equivalent. For example,
+`dow -m 12` will return the day of the week for this day in December of this year and `dow -m 12 -d 25` will return the day of the week for Christmas this year.
+
+Use `--help` to see your options on the command line.
+
+	$ ./dow-2.2.2-osx/dow --help
 
 ## Development
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+After checking out the repo, run `bundle install` to install dependencies. Run `rake spec` to execute unit tests.
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+Use `rake package:#{platform}` to package the app using [traveling-ruby](https://github.com/phusion/traveling-ruby). Use `rake -T` to see your packaging options. Note: Make sure you're using either Ruby 2.1.6 or 2.2.2 (`rbenv version`) before packaging.
+
+## Continuous delivery
+
+The [dow-ci](https://github.com/jdenen/dow-ci) repository contains Jenkins [job scripts](https://github.com/jenkinsci/job-dsl-plugin) that handle the testing and packaging of this application for 2 Ruby versions (2.1.6 and 2.2.2) and 3 platforms (OSX, Linux x86, and Linux x86_64). Passing OSX builds are auto-delivered to s3 and available for download.
 
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/dow.
-
 
 ## License
 

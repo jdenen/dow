@@ -9,10 +9,17 @@ describe DOW, :artifact do
     end
   end
 
-  context "with date arguments" do
+  context "with valid date arguments" do
     it "prints the correct day of the week" do
       output = IO.popen("spec/support/dow -m 12 -d 25 -y 2015")
       expect(output.readlines.first.strip).to eq "Friday"
+    end
+  end
+
+  context "with invalid date arguments" do
+    it "prints invalid date message" do
+      output = IO.popen("spec/support/dow -m 2 -d 29 -y 2013")
+      expect(output.readlines.first.strip).to eq "ERROR: That date does not exist!"
     end
   end
 

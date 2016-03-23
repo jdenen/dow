@@ -35,7 +35,11 @@ OptionParser.new do |opts|
 end.parse!
 
 if options
-  puts options[:today] ?
-         DOW::Converter.date :
-         DOW::Converter.date(options)
+  begin
+    puts options[:today] ?
+           DOW::Converter.date :
+           DOW::Converter.date(options)
+  rescue DOW::Converter::InvalidDateError
+    puts "ERROR: That date does not exist!"
+  end
 end

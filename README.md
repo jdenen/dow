@@ -4,7 +4,7 @@ DOW is a simple command line application to determine the day of the week ("Wedn
 
 ## Installation
 
-Download and unpack one of the following OSX tarballs.
+Download and unpack one of the following OSX tarballs. NOTE: You do not need Ruby installed to use the app.
 
 [Ruby 2.2.2](https://s3.amazonaws.com/dow-release/ruby-2.2.2/dow-2.2.2-osx.tar.gz)
 
@@ -39,13 +39,15 @@ The next version of the app should remove the need for `-m`, `-d`, and `-y` opti
 	$ dow 1 1 2020
 	$ dow 14 3
 
+I'd also like to implement an option for finding the date of the next day of the week. For example, `dow wednesday` or `dow wed` would return next Wednesday's date.
+
 ## Continuous delivery
 
 The [dow-ci](https://github.com/jdenen/dow-ci) repository contains Jenkins [job scripts](https://github.com/jenkinsci/job-dsl-plugin) that handle the testing and packaging of this application for 2 Ruby versions (2.1.6 and 2.2.2) and 3 platforms (OSX, Linux x86, and Linux x86_64). Passing OSX builds are auto-delivered to s3 and available for download.
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/dow.
+Bug reports and pull requests are welcome on GitHub at https://github.com/jdenen/dow
 
 ## License
 

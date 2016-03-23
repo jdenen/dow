@@ -9,6 +9,18 @@ describe DOW::Converter do
       end
     end
 
+    context "with an invalid date argument" do
+      it "raises an InvalidDate exception" do
+        expect { subject.date day: 29, month: 2 }.to raise_error(DOW::Converter::InvalidDateError)
+      end
+    end
+
+    context "with other invalid arguments" do
+      it "raises the standard exception" do
+        expect { subject.date day: :foo }.to raise_error(NoMethodError)
+      end
+    end
+
     context "with month, day, and year arguments" do
       it "returns a day of the week string" do
         expect(subject.date month: 12, day: 20, year: 2010).to eq "Monday"

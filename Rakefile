@@ -7,9 +7,14 @@ namespace :spec do
   end
 
   desc "Execute smoke tests"
-  RSpec::Core::RakeTask.new(:smoke) do |task| 
+  RSpec::Core::RakeTask.new(:smoke => 'spec:support') do |task| 
     ENV['TEST_ARTIFACT'] = '1'
     task.rspec_opts = "-f RspecJunitFormatter -o result/smoke-test.xml -f progress"
+  end
+
+  task :support do
+    FileUtils.mkdir_p "spec/support"
+    FileUtils.cp_r Dir.glob("dow-*/*"), "spec/support", :remove_destination => true
   end
 end
 

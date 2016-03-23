@@ -25,9 +25,19 @@ Use `--help` to see your options on the command line.
 
 ## Development
 
-After checking out the repo, run `bundle install` to install dependencies. Run `rake spec` to execute unit tests.
+After checking out the repo, run `bundle install` to install dependencies. Run `rake spec:unit` to execute unit tests.
 
 Use `rake package:#{platform}` to package the app using [traveling-ruby](https://github.com/phusion/traveling-ruby). Use `rake -T` to see your packaging options. Note: Make sure you're using either Ruby 2.1.6 or 2.2.2 (`rbenv version`) before packaging.
+
+After building, run `rake spec:smoke` to test the packaged app.
+
+## Next steps
+
+The next version of the app should remove the need for `-m`, `-d`, and `-y` options. It should interpret its arguments and prompt the user for clarification as needed. Examples:
+
+	$ dow 12 25
+	$ dow 1 1 2020
+	$ dow 14 3
 
 ## Continuous delivery
 
